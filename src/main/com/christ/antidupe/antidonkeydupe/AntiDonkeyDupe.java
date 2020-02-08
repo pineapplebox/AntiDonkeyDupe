@@ -1,4 +1,12 @@
 public class AntiDupe extends JavaPlugin {
+    
+    @Override
+	public void onLoad() {
+		plugin = this;
+
+		getLogger().info("[AntiDonkeyDupe] Successfully Enabled");
+	}
+    
     @Override
     public void onEnable() {
         ProtocolLibrary.getProtocolManager().addPacketListener(
