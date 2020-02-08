@@ -1,0 +1,13 @@
+name: AntiDonkeyDupe
+version: 1.0.0
+description: A simple protection against the Donkey Dupe. ProcolLib is required.
+author: christ
+website: b2t2.org
+depend: [ProtocolLib]
+prefix: AntiDonkeyDupe
+
+main: com.christ.antidupe.antidonkeydupe.AntiDonkeyDupe
+
+commands: {}
+
+permissions: {}
