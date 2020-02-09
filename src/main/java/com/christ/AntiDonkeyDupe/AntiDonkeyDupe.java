@@ -13,30 +13,30 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
 
 		getLogger().info("[AntiDonkeyDupe] Successfully Enabled");
 	}
-    
+	
+    @Override
+    	public void onEnable() {
+        	ProtocolLibrary.getProtocolManager().addPacketListener(
+		new PacketAdapter(this, PacketType.Play.Client.CPacketInput) {
+		});
+	}
+	
 	public void onPacketReceiving(PacketEvent e) {
 		if (e.getPacketType() == PacketType.Play.Client.CPacketInput) {
 			e.setCancelled(true);
 		}
 	}
 	
-    @Override
-    public void onEnable() {
-        ProtocolLibrary.getProtocolManager().addPacketListener(
-            new PacketAdapter(this, PacketType.Play.Client.CPacketInput) {
-            @Override
-                public void onTime(final Player p) {
-                    Bukkit.getScheduler().runTaskLater(Core.getInstance(), new Runnable() {
-                    @Override
-                    public void run() {
-                        if(p.isInsideVehicle()) {
-                            if (p.getVehicle() != null) {
-				onPacketReceiving();
-                            }
-                        }
-                    }
-                    },20L);
-                }
-            });
-    }
+	public void onTime(final Player p) {
+        	Bukkit.getScheduler().runTaskLater(Core.getInstance(), new Runnable() {
+                	@Override
+                	public void run() {
+                        	if(p.isInsideVehicle()) {
+                            		if (p.getVehicle() != null) {
+						onPacketReceiving();
+                            		}
+                        	}
+                    	}
+                },20L);
+        }
 }
