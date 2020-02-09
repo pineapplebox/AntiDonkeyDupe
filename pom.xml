@@ -26,14 +26,29 @@
 				<target>1.8</target>
 			</configuration>
 		</plugin>
+		
 		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-jar-plugin</artifactId>
-			<version>2.4</version>
-			<configuration>
-				<finalName>${project.name}</finalName>
-			</configuration>
-		</plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+		    <finalName>${project.name}</finalName>
+                    <transformers>
+                        <transformer
+                            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>com.christ.antidupe.antidonkeydupe.AntiDonkeyDupe</mainClass>
+                        </transformer>
+                    </transformers>
+                </configuration>
+            </plugin>
 	</plugins>
 </build>
 
