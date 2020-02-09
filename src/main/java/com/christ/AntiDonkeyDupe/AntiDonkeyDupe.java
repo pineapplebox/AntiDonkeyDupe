@@ -26,7 +26,7 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
                         if(p.isInsideVehicle()) {
                             if (p.getVehicle() != null) {
 				class CancelPacket {
-                                    public void onPacketReceiving(PacketEvent e) {
+                                    void onPacketReceiving(PacketEvent e) {
                                         if (e.getPacketType() == PacketType.Play.Client.CPacketInput) {
                                             e.setCancelled(true);
                                         }
