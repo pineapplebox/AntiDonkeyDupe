@@ -8,7 +8,7 @@
 
 ## **Compiling**
 
-**Make sure that Maven is already installed**
+**Make sure that Maven and Git are already installed**
 
 ```
 git clone https://github.com/pineapplebox/AntiDonkeyDupe.git
@@ -19,5 +19,5 @@ cd AntiDonkeyDupe
 ```
 
 ```
-mvn install
+mvn clean install
 ```
