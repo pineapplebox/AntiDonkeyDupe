@@ -13,31 +13,33 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
 
 		getLogger().info("[AntiDonkeyDupe] Successfully Enabled");
 	}
-	
+
     @Override
     public void onEnable() {
-	protocolManager = ProtocolLibrary.getProtocolManager();
+        protocolManager = ProtocolLibrary.getProtocolManager();
     }
-              
-    protocolManager.addPacketListener(
-	new PacketAdapter(this, ListenerPriority.NORMAL, 
-        PacketType.Play.Client.CPacketInput) {
-    	    public void onTime(final Player p) {
-		Bukkit.getScheduler().runTaskLater(Core.getInstance(), new Runnable() {
-	    	    public void run() {
-			if(p.isInsideVehicle()) {
-		    	    if (p.getVehicle() != null) {
-				break run;
-				public void onPacketReceiving(PacketEvent e) {
-			            if (e.getPacketType() == PacketType.CPacketInput) {
-				        e.setCancelled(true);
-			    	    }
-				}
-		    	    }
-			}
-	    	    }
-		},20L);
-	    }
-	}
-    });
+
+    public void onTime(final Player p) {
+        Bukkit.getScheduler().runTaskLater(Core.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                if(p.isInsideVehicle()) {
+                    if (p.getVehicle() != null) {
+                        protocolManager.addPacketListener(
+                            new PacketAdapter(this, ListenerPriority.NORMAL, 
+                            PacketType.Play.Client.CPacketInput) {
+                            @Override
+                                void onPacketReceiving(PacketEvent event) : {
+                                    if (event.getPacketType() == 
+                                    PacketType.Play.Client.CPacketInput) {
+                                        event.setCancelled(true);
+                                    }
+                            }
+                            break onPacketReceiving;
+                        });
+                    }
+                }
+            }
+        },20L);
+    }
 }
