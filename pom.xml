@@ -1,67 +1,86 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<modelVersion>4.0.0</modelVersion>
-<groupId>com.christ.antidupe</groupId>
-<artifactId>AntiDonkeyDupe</artifactId>
-<version>1.0</version>
-<name>AntiDonkeyDupe</name>
-<description>A simple protection against the Donkey Dupe. ProtocolLib is required.</description>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.christ.antidupe</groupId>
+    <artifactId>AntiDonkeyDupe</artifactId>
+    <!-- Version is used in plugin.yml -->
+    <version>1.0</version>
+    <packaging>jar</packaging>
 
-  <build>
-    <defaultGoal>install</defaultGoal>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.5</version>
-        <configuration>
-          <archive>
-            <manifestEntries>
-              <Main-Class>com.christ.antidupe.antidonkeydupe.AntiDonkeyDupe</Main-Class>
-            </manifestEntries>
-          </archive>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>2.3</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <shadedArtifactAttached>true</shadedArtifactAttached>
-              <createDependencyReducedPom>false</createDependencyReducedPom>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+    <!-- Plugin Information -->
+    <!-- Name, Description, and URL are used in plugin.yml -->
+    <name>AntiDonkeyDupe</name>
+    <description>A simple protection against the Donkey Dupe. ProtocolLib is required.</description>
+    <url>https://b2t2.org</url>
 
-<repositories>
-	<repository>
-		<id>spigot-repo</id>
-		<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-	</repository>
-    <repository>
-        <id>dmulloy2-repo</id>
-        <url>https://repo.dmulloy2.net/nexus/repository/public/</url>
-    </repository>
-</repositories>
+    <developers>
+        <developer>
+                <name>Christ</name>
+                <url>http://b2t2.org</url>
+        </developer>
+    </developers>
 
-<dependencies>
-	<dependency>
-		<groupId>org.spigotmc</groupId>
-		<artifactId>spigot-api</artifactId>
-		<version>1.12.2-R0.1-SNAPSHOT</version>
-	</dependency>
-    <dependency>
-        <groupId>com.comphenix.protocol</groupId>
-        <artifactId>ProtocolLib</artifactId>
-        <version>4.5.0</version>
-    </dependency>
-</dependencies>
+    <properties>
+        <!--  Author and MainClass are used in plugin.yml -->
+        <author>christ</author>
+        <mainClass>com.christ.antidupe.antidonkeydupe.AntiDonkeyDupe</mainClass>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.5.0</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>https://repo.dmulloy2.net/nexus/repository/public/</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <defaultGoal>clean install</defaultGoal>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- Keeping filtering at true here reduces plugin.yml redundancy! -->
+                <filtering>true</filtering>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- Keep filtering at false for other resources to prevent bad magic -->
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                    <exclude>plugin.yml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
