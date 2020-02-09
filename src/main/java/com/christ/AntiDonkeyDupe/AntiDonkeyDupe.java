@@ -2,9 +2,10 @@ package com.christ.AntiDonkeyDupe;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class AntiDupe extends JavaPlugin implements Listener {
+public class AntiDonkeyDupe extends JavaPlugin implements Listener {
     
     @Override
 	public void onLoad() {
@@ -25,9 +26,9 @@ public class AntiDupe extends JavaPlugin implements Listener {
                     public void run() {
                         if(p.isInsideVehicle()) {
                             if (p.getVehicle() != null) {
-                                public void onPacketReceiving(PacketEvent event) {
-                                    if (event.getPacketType() == PacketType.Play.Client.CPacketInput) {
-                                        event.setCancelled(true);
+                                public void onPacketReceiving(PacketEvent e) {
+                                    if (e.getPacketType() == PacketType.Play.Client.CPacketInput) {
+                                        e.setCancelled(true);
                                     }
                                 }
                             }
