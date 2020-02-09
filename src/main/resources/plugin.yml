@@ -1,13 +1,7 @@
-name: AntiDonkeyDupe
-version: 1.0.0
-description: A simple protection against the Donkey Dupe. ProtocolLib is required.
-author: christ
-website: b2t2.org
-depend: [ProtocolLib]
-prefix: AntiDonkeyDupe
+name: ${name}
+version: ${version}
+description: ${description}
+author: ${author}
+website: ${url}
 
-main: com.christ.antidupe.antidonkeydupe.AntiDonkeyDupe
-
-commands: {}
-
-permissions: {}
+main: ${mainClass}
