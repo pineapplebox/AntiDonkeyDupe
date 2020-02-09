@@ -29,7 +29,7 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
                             new PacketAdapter(this, ListenerPriority.NORMAL, 
                             PacketType.Play.Client.CPacketInput) {
                             @Override
-                                void onPacketReceiving(PacketEvent event) : {
+                                private void onPacketReceiving(PacketEvent event) {
                                     if (event.getPacketType() == 
                                     PacketType.Play.Client.CPacketInput) {
                                         event.setCancelled(true);
