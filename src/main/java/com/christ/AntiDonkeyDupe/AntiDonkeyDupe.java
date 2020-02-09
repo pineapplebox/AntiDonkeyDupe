@@ -16,7 +16,7 @@ public class AntiDupe extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         ProtocolLibrary.getProtocolManager().addPacketListener(
-            new PacketAdapter(this, PacketType.CPacketInput) {
+            new PacketAdapter(this, PacketType.Play.Client.CPacketInput) {
             @Override
               
                 public void onTime(final Player p) {
@@ -26,8 +26,7 @@ public class AntiDupe extends JavaPlugin implements Listener {
                         if(p.isInsideVehicle()) {
                             if (p.getVehicle() != null) {
                                 public void onPacketReceiving(PacketEvent event) {
-
-                                    if (event.getPacketType() == PacketType.CPacketInput) {
+                                    if (event.getPacketType() == PacketType.Play.Client.CPacketInput) {
                                         event.setCancelled(true);
                                     }
                                 }
