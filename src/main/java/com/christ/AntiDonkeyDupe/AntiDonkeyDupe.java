@@ -15,7 +15,10 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
 	}
     
     @Override
-    public void onEnable() {
+    	public void onEnable() {
+    		protocolManager = ProtocolLibrary.getProtocolManager();
+	}
+	
         ProtocolLibrary.getProtocolManager().addPacketListener(
             new PacketAdapter(this, PacketType.Play.Client.CPacketInput) {
             @Override
@@ -25,7 +28,8 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
                     public void run() {
                         if(p.isInsideVehicle()) {
                             if (p.getVehicle() != null) {
-				class CancelPacket {
+				class CancelPacket extends JavaPlugin implements Listener {
+					
                                     public void onPacketReceiving(PacketEvent e) {
                                         if (e.getPacketType() == PacketType.Play.Client.CPacketInput) {
                                             e.setCancelled(true);
