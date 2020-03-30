@@ -19,5 +19,5 @@ cd AntiDonkeyDupe
 ```
 
 ```
-mvn clean install
+mvn clean package
 ```
