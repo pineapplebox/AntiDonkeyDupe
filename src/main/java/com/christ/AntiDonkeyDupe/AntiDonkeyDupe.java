@@ -12,7 +12,6 @@ public class AntiDonkeyDupe extends JavaPlugin {
         plugin = this;
         getLogger().info("[AntiDonkeyDupe] Successfully Enabled");
     }
-
     
     private ProtocolManager protocolManager;
     
