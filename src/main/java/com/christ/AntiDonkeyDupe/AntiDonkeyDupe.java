@@ -17,19 +17,16 @@ public class AntiDonkeyDupe extends JavaPlugin {
     @Override
     public void onEnable() {
         ProtocolLibrary.getProtocolManager().addPacketListener(
-            new PacketAdapter(this, PacketType.Play.Client.CPacketInput) {
-            @Override
-                public void onPacketReceiving(PacketEvent event) {
-                    Player p = event.getPlayer();
-                    Bukkit.getScheduler().runTaskLater(Core.getInstance(), new Runnable() {
-                    @Override
-                        if(p.isInsideVehicle()) {
-                            if (event.getPacketType() == PacketType.Play.Client.CPacketInput) {
-                                event.setCancelled(true);
-                            }
-                        }
-                    },20L);
+          new PacketAdapter(this, PacketType.Play.Client.CPacketInput) {
+              @Override
+            public void onPacketReceiving(PacketEvent event) {
+                Player p = event.getPlayer();
+                if(p.isInsideVehicle()) {
+                    if (event.getPacketType() == PacketType.Play.Client.CPacketInput) {
+                        event.setCancelled(true);
+                    }
                 }
-            });
+            }
+        });
     }
 }
