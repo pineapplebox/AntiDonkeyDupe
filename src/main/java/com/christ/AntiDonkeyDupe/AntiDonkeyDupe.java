@@ -21,15 +21,14 @@ public class AntiDupe extends JavaPlugin {
             @Override
                 public void onPacketReceiving(PacketEvent event) {
                     Player p = event.getPlayer();
-                        Bukkit.getScheduler().runTaskLater(Core.getInstance(), new Runnable() {
-                        @Override
-                            if(p.isInsideVehicle()) {
-                                if (event.getPacketType() == PacketType.CPacketInput) {
-                                    event.setCancelled(true);
-                                }
+                    Bukkit.getScheduler().runTaskLater(Core.getInstance(), new Runnable() {
+                    @Override
+                        if(p.isInsideVehicle()) {
+                            if (event.getPacketType() == PacketType.CPacketInput) {
+                                event.setCancelled(true);
                             }
-                        },20L);
-                    }
+                        }
+                    },20L);
                 }
             });
     }
