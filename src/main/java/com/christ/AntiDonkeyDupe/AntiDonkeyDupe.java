@@ -5,7 +5,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class AntiDupe extends JavaPlugin {
+public class AntiDonkeyDupe extends JavaPlugin {
     
     @Override
 	public void onLoad() {
@@ -17,14 +17,14 @@ public class AntiDupe extends JavaPlugin {
     @Override
     public void onEnable() {
         ProtocolLibrary.getProtocolManager().addPacketListener(
-            new PacketAdapter(this, PacketType.CPacketInput) {
+            new PacketAdapter(this, PacketType.Play.Client.CPacketInput) {
             @Override
                 public void onPacketReceiving(PacketEvent event) {
                     Player p = event.getPlayer();
                     Bukkit.getScheduler().runTaskLater(Core.getInstance(), new Runnable() {
                     @Override
                         if(p.isInsideVehicle()) {
-                            if (event.getPacketType() == PacketType.CPacketInput) {
+                            if (event.getPacketType() == PacketType.Play.Client.CPacketInput) {
                                 event.setCancelled(true);
                             }
                         }
