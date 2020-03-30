@@ -8,25 +8,28 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class AntiDonkeyDupe extends JavaPlugin {
     
     @Override
-	public void onLoad() {
-		plugin = this;
+    public void onLoad() {
+        plugin = this;
+        getLogger().info("[AntiDonkeyDupe] Successfully Enabled");
+    }
 
-		getLogger().info("[AntiDonkeyDupe] Successfully Enabled");
-	}
+    
+    private ProtocolManager protocolManager;
     
     @Override
     public void onEnable() {
         ProtocolLibrary.getProtocolManager().addPacketListener(
           new PacketAdapter(this, PacketType.Play.Client.CPacketInput) {
+              // Note that this is executed asynchronously
               @Override
             public void onPacketReceiving(PacketEvent event) {
                 Player p = event.getPlayer();
                 if(p.isInsideVehicle()) {
-                    if (event.getPacketType() == PacketType.Play.Client.CPacketInput) {
-                        event.setCancelled(true);
-                    }
+                    event.setCancelled(true);
                 }
             }
         });
     }
 }
+
+ 
