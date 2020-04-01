@@ -13,7 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
-import org.bukkit.block;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -22,7 +23,6 @@ public class AntiDonkeyDupe extends JavaPlugin {
     @Override
     public void onEnable() {
         this.setupProtocolLibrary();
-        this.setupPortalPatch();
         System.out.println("[Multi-Patch] Plugin successfully enabled.");
     }
     public void onDisable() {
