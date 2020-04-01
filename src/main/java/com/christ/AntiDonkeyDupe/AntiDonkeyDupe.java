@@ -18,10 +18,11 @@ import org.bukkit.block;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 
-public class Main extends JavaPlugin {
+public class AntiDonkeyDupe extends JavaPlugin {
     @Override
     public void onEnable() {
         this.setupProtocolLibrary();
+        this.setupPortalPatch();
         System.out.println("[Multi-Patch] Plugin successfully enabled.");
     }
     public void onDisable() {
@@ -55,13 +56,15 @@ public class Main extends JavaPlugin {
             }
         });
     }
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onPortalCreate(PortalCreateEvent e) {
-        ArrayList<BlockState> b = (ArrayList<BlockState>) e.getBlocks();
-        World w = e.getWorld();
-        int height = b.get(0).getLocation().getBlockY();
-        if (height >= 128 && w.getName().endsWith("_nether")) {
-                e.setCancelled(true);
+    private void setupPortalPatch() {
+        @EventHandler(priority = EventPriority.LOWEST)
+        public void onPortalCreate(PortalCreateEvent e) {
+            ArrayList<BlockState> b = (ArrayList<BlockState>) e.getBlocks();
+            World w = e.getWorld();
+            int height = b.get(0).getLocation().getBlockY();
+            if (height >= 128 && w.getName().endsWith("_nether")) {
+                    e.setCancelled(true);
+            }
         }
     }
 }
