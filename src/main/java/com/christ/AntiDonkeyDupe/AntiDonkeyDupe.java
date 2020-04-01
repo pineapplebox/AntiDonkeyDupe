@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
+import org.bukkit;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -58,7 +59,7 @@ public class AntiDonkeyDupe extends JavaPlugin {
     }
     
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onPortalCreate(final PortalCreateEvent e) {
+    public void onPortalCreate(PortalCreateEvent e) {
         ArrayList<BlockState> b = (ArrayList<BlockState>) e.getBlocks();
         World w = e.getWorld();
         int height = b.get(0).getLocation().getBlockY();
