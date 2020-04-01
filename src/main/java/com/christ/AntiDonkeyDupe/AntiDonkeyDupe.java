@@ -1,5 +1,10 @@
 package com.christ.AntiDonkeyDupe;
 
+
+import net.minecraft.util.io.netty.channel.Channel;
+import net.minecraft.util.io.netty.channel.ChannelDuplexHandler;
+import net.minecraft.util.io.netty.channel.ChannelHandlerContext;
+import net.minecraft.util.io.netty.channel.ChannelPromise;
 import io.netty.channel.*;
 import net.minecraft.server.v1_12_R1.PacketPlayInSteerVehicle;
 import org.bukkit.Bukkit;
