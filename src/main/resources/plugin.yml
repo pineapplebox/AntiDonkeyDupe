@@ -6,4 +6,4 @@ website: b2t2.org
 depend: [ProtocolLib]
 prefix: AntiDonkeyDupe
 
-main: AntiDonkeyDupe.AntiDonkeyDupe
+main: com.christ.AntiDonkeyDupe.AntiDonkeyDupe
