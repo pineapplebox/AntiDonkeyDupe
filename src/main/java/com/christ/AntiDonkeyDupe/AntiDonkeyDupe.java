@@ -58,7 +58,7 @@ public class AntiDonkeyDupe extends JavaPlugin {
     }
     private void setupPortalPatch() {
         @EventHandler(priority = EventPriority.LOWEST)
-        public void onPortalCreate(PortalCreateEvent e) {
+        public void onPortalCreate(final PortalCreateEvent e) {
             ArrayList<BlockState> b = (ArrayList<BlockState>) e.getBlocks();
             World w = e.getWorld();
             int height = b.get(0).getLocation().getBlockY();
