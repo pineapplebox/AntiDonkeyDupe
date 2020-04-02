@@ -13,8 +13,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -22,27 +20,13 @@ import com.comphenix.protocol.ProtocolLibrary;
 public class AntiDonkeyDupe extends JavaPlugin {
     @Override
     public void onEnable() {
-        this.setupProtocolLibrary();
-        System.out.println("[Multi-Patch] Plugin successfully enabled.");
+        this.useProtocolLib();
+        System.out.println("[AntiDonkeyDupe] Plugin successfully enabled.");
     }
     public void onDisable() {
         ProtocolLibrary.getProtocolManager().removePacketListeners((Plugin)this);
     }
-    private void setupProtocolLibrary() {
-        ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener)new PacketAdapter(this, new PacketType[] { PacketType.Play.Client.TAB_COMPLETE }) {
-            public void onPacketReceiving(final PacketEvent p) {
-                final PacketType packetType = p.getPacketType();
-                if (packetType.equals((Object)PacketType.Play.Client.TAB_COMPLETE)) {
-                    final PacketContainer packetContainer = p.getPacket();
-                    final String msg = ((String)packetContainer.getSpecificModifier((Class<?>)String.class).read(0)).toLowerCase();
-                    if (msg.equals("/")) {
-                        p.setCancelled(true);
-                        return;
-                    }
-                }
-            }
-        });
-        
+    private void useProtocolLib() {
         ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener)new PacketAdapter(this, new PacketType[] { PacketType.Play.Client.STEER_VEHICLE }) {
             public void onPacketReceiving(final PacketEvent event) {
                 final PacketType packetType = event.getPacketType();
