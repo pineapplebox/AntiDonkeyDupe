@@ -13,6 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
+import org.bukkit.event.player.PlayerListener
+
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
@@ -39,5 +41,16 @@ public class AntiDonkeyDupe extends JavaPlugin {
                 }
             }
         });
+    }
+    @EventHandler
+    public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
+        Player player = event.getPlayer();
+        Boolean isSneaking = player.isSneaking();
+        if(isSneaking) {
+            if(player.isInsideVehicle()) {
+		        player.eject();
+		        return;
+	        }
+        }
     }
 }
