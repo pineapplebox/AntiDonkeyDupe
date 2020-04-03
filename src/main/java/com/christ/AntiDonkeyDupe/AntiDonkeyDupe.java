@@ -13,13 +13,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerListener;
-
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 
-public class AntiDonkeyDupe extends JavaPlugin {
+public class AntiDonkeyDupe extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         this.useProtocolLib();
