@@ -48,9 +48,9 @@ public class AntiDonkeyDupe extends JavaPlugin {
         Boolean isSneaking = player.isSneaking();
         if(isSneaking) {
             if(player.isInsideVehicle()) {
-		        player.eject();
-		        return;
-	        }
+	        player.eject();
+	        return;
+	    }
         }
     }
 }
