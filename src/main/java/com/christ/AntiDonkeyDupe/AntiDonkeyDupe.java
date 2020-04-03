@@ -43,7 +43,7 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
         });
     }
     @EventHandler
-    public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
+    public void onVehicleExit(VehicleExitEvent event) {
         Player player = event.getPlayer();
         Boolean isSneaking = player.isSneaking();
         if(isSneaking) {
