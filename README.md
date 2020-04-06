@@ -8,7 +8,7 @@
 
 ## **Compiling**
 
-**Make sure that Maven and Git are already installed**
+**Make sure that Maven, Git and NMS (CraftBukkit) are already installed**
 
 ```
 git clone https://github.com/pineapplebox/AntiDonkeyDupe.git
