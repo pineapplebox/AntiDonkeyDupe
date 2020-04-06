@@ -31,8 +31,8 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
         System.out.println("[AntiDonkeyDupe] Plugin successfully enabled.");
     }
     public void onDisable() {
-        System.out.println("[AntiDonkeyDupe] Plugin successfully disabled.");
         ProtocolLibrary.getProtocolManager().removePacketListeners((Plugin)this);
+        System.out.println("[AntiDonkeyDupe] Plugin successfully disabled.");
     }
     private void useProtocolLib() {
         ProtocolLibrary.getProtocolManager().addPacketListener((PacketListener)new PacketAdapter(this, new PacketType[] { PacketType.Play.Client.STEER_VEHICLE }) {
