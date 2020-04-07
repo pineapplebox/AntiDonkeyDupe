@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.event.Listener;
@@ -51,9 +52,11 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
                                     return;
                                 } else {
                                     vehicle.addPassenger(p);
+                                    getLogger().info(ChatColor.RED + "Prevented packet entity dismount from player: " + p.getName());
+                                    return;
                                 }
-                            }, 3L);
-                        }, 2L);
+                            }, 2L);
+                        }, 1L);
                     }
                 }
             }
