@@ -14,7 +14,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -61,5 +61,17 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
                 }
             }
         });
+    }
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void onEntityPortalEvent(EntityPortalEvent event) {
+        if (event.getEntity() instanceof Mule || event.getEntity() instanceof Donkey || event.getEntity() instanceof Llama || event.getEntity() instanceof Zombie) {
+            if (event.getCause == TeleportCause.END_PORTAL) {
+                final Entity entity = (Entity) event.getEntity();
+                int health = entity.getHealth();
+                if(health <= 2) {
+                    event.setCancelled(true);
+                }
+            }
+        }
     }
 }
