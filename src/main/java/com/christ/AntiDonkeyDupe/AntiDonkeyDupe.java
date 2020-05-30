@@ -49,7 +49,7 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
                             vehicle.eject();
                             Bukkit.getScheduler().runTaskLater(plugin, () -> {
                                 if(p.isSneaking()) {
-                                    return;
+                                    return false;
                                 } else {
                                     vehicle.addPassenger(p);
                                     getLogger().info(ChatColor.RED + "Prevented packet entity dismount from player: " + p.getName());
