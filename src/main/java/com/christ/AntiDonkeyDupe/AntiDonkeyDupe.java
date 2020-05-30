@@ -53,7 +53,7 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
                                 } else {
                                     vehicle.addPassenger(p);
                                     getLogger().info(ChatColor.RED + "Prevented packet entity dismount from player: " + p.getName());
-                                    return;
+                                    return true;
                                 }
                             }, 2L);
                         }, 1L);
