@@ -1,6 +1,6 @@
 name: AntiDonkeyDupe
-version: 1.2
-description: A simple protection against the Donkey Dupe. ProtocolLib is required.
+version: 1.3
+description: A simple protection against the Donkey Dupe. ProcolLib is required.
 author: christ
 website: b2t2.org
 depend: [ProtocolLib]
