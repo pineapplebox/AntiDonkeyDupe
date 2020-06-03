@@ -14,11 +14,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.Location;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.entity.EntityType;
+import org.bukkit.event.entity.*;
+import org.bukkit.event.world.*;
+import org.bukkit.entity.*;
+import org.bukkit.event.*;
 
 import net.minecraft.server.v1_12_R1.PacketPlayInSteerVehicle;
 
@@ -49,11 +53,11 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
                             vehicle.eject();
                             Bukkit.getScheduler().runTaskLater(plugin, () -> {
                                 if(p.isSneaking()) {
-                                    return false;
+                                    return;
                                 } else {
                                     vehicle.addPassenger(p);
                                     getLogger().info(ChatColor.RED + "Prevented packet entity dismount from player: " + p.getName());
-                                    return true;
+                                    return;
                                 }
                             }, 2L);
                         }, 1L);
@@ -62,14 +66,23 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
             }
         });
     }
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onEntityPortalEvent(EntityPortalEvent event) {
-        if (event.getEntity() instanceof Mule || event.getEntity() instanceof Donkey || event.getEntity() instanceof Llama || event.getEntity() instanceof Zombie) {
-            if (event.getCause == TeleportCause.END_PORTAL) {
+    
+    public void onContact(final EntityPortalEvent event) {
+        final World world = event.getTo().getWorld();
+        if (world.getName().endsWith("_end")) {
+            if (event.getEntity() instanceof Mule || event.getEntity() instanceof Donkey || event.getEntity() instanceof Llama || event.getEntity() instanceof Zombie) {
                 final Entity entity = (Entity) event.getEntity();
-                int health = entity.getHealth();
+                double health = ((LivingEntity) entity).getHealth();
                 if(health <= 2) {
                     event.setCancelled(true);
+                }
+            }
+            return;
+        } else if (world.getName().endsWith("_nether")) {
+            if (event.getEntity() instanceof Mule || event.getEntity() instanceof Donkey || event.getEntity() instanceof Llama || event.getEntity() instanceof Horse) {
+                final Entity entity = (Entity) event.getEntity();
+                if(entity.isEmpty() != true) {
+                    entity.eject();
                 }
             }
         }
