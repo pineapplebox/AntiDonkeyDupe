@@ -66,18 +66,9 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
             }
         });
     }
-    
+    @EventHandler
     public void onContact(final EntityPortalEvent event) {
         final World world = event.getTo().getWorld();
-        if (world.getName().endsWith("_end")) {
-            if (event.getEntity() instanceof Mule || event.getEntity() instanceof Donkey || event.getEntity() instanceof Llama || event.getEntity() instanceof Zombie) {
-                final Entity entity = (Entity) event.getEntity();
-                double health = ((LivingEntity) entity).getHealth();
-                if(health <= 2) {
-                    event.setCancelled(true);
-                }
-            }
-            return;
         } else if (world.getName().endsWith("_nether")) {
             if (event.getEntity() instanceof Mule || event.getEntity() instanceof Donkey || event.getEntity() instanceof Llama || event.getEntity() instanceof Horse) {
                 final Entity entity = (Entity) event.getEntity();
@@ -85,6 +76,27 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
                     entity.eject();
                 }
             }
+        } 
+        return;
+    }
+    @EventHandler
+    public void onEntityPortalEvent(EntityPortalEvent evt) {
+        Entity entity = evt.getEntity();
+        if(entity instanceof ChestedHorse){
+            if(((ChestedHorse) entity).isCarryingChest()){
+                evt.setCancelled(true);
+                getLogger().info(ChatColor.RED + "Prevented a " + entity.toString() + " from going through portal");
+            }
+        }
+    }
+    @EventHandler
+    public void onDamageEvent(EntityDamageEvent e) {
+        if(e.getEntity() instanceof Player) {
+            Player p = (Player) e.getEntity();
+            if (p.getVehicle() != null) {
+                Entity vehicle = p.getVehicle();
+                vehicle.eject();
+            }  
         }
     }
 }
