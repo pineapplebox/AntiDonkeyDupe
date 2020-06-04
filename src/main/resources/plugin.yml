@@ -1,6 +1,6 @@
 name: AntiDonkeyDupe
-version: 1.3
-description: A simple protection against the Donkey Dupe. ProcolLib is required.
+version: 1.4
+description: An (almost) full-proof protection against the Donkey Dupe. ProcolLib and Spigot are required.
 author: christ
 website: b2t2.org
 depend: [ProtocolLib]
