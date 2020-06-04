@@ -69,7 +69,7 @@ public class AntiDonkeyDupe extends JavaPlugin implements Listener {
     @EventHandler
     public void onContact(final EntityPortalEvent event) {
         final World world = event.getTo().getWorld();
-        } else if (world.getName().endsWith("_nether")) {
+        if (world.getName().endsWith("_nether")) {
             if (event.getEntity() instanceof Mule || event.getEntity() instanceof Donkey || event.getEntity() instanceof Llama || event.getEntity() instanceof Horse) {
                 final Entity entity = (Entity) event.getEntity();
                 if(entity.isEmpty() != true) {
